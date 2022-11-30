@@ -22,6 +22,35 @@ function randomNumberGenerator() {
   return (ranNum = Math.floor(Math.random() * (3 - 1 + 1) + 1));
 }
 
+//Function to compare computer and player choices
+function playRound(playerChoice, computerChoice) {
+  if (playerChoice === computerChoice) {
+    playerScore = playerScore;
+    computerScore = computerScore;
+    return `It\'s a tie! Time to play again! Player Score: ${playerScore} Computer Score: ${computerScore}`;
+  } else if (playerChoice === "rock" && computerChoice === "scissors") {
+    playerScore++;
+    return `Rock beats scissors - you win! Player Score: ${playerScore} Computer Score: ${computerScore}`;
+  } else if (playerChoice === "rock" && computerChoice === "paper") {
+    computerScore++;
+    return `Paper beats rock - you lose! Player Score: ${playerScore} Computer Score: ${computerScore}`;
+  } else if (playerChoice === "paper" && computerChoice === "rock") {
+    playerScore++;
+    return `Paper beats rock - you win! Player Score: ${playerScore} Computer Score: ${computerScore}`;
+  } else if (playerChoice === "paper" && computerChoice === "scissors") {
+    computerScore++;
+    return `Scissors beat paper - you lose! Player Score: ${playerScore} Computer Score: ${computerScore}`;
+  } else if (playerChoice === "scissors" && computerChoice === "paper") {
+    playerScore++;
+    return `Scissors beat paper - you win! Player Score: ${playerScore} Computer Score: ${computerScore}`;
+  } else if (playerChoice === "scissors" && computerChoice === "rock") {
+    computerScore++;
+    return `Rock beats scissors - you lose! Player Score: ${playerScore} Computer Score: ${computerScore}`;
+  } else {
+    return "Invalid choice - you must choose rock, paper, or scissors";
+  }
+}
+
 //Get computer choice of rock/paper/scissors
 computerChoice = getComputerChoice(randomNumberGenerator());
 console.log(computerChoice); //checks logic so far
@@ -35,4 +64,4 @@ playerChoice = playerChoice.toLowerCase();
 console.log(playerChoice);
 
 //Compare player and computer choices
-// console.log(playRound(playerChoice, computerChoice));
+console.log(playRound(playerChoice, computerChoice));
