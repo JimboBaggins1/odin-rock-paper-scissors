@@ -51,17 +51,54 @@ function playRound(playerChoice, computerChoice) {
   }
 }
 
-//Get computer choice of rock/paper/scissors
-computerChoice = getComputerChoice(randomNumberGenerator());
-console.log(computerChoice); //checks logic so far
+//Function to loop for five rounds
+function game() {
+  for (let i = 0; i < 5; i++) {
+    console.log(playerScore);
+    console.log(computerScore);
 
-//Prompt player to make their choice and store answer
-playerChoice = prompt("Choose rock, paper, scissors:");
-console.log(playerChoice);
+    //Get computer choice of rock/paper/scissors
+    computerChoice = getComputerChoice(randomNumberGenerator());
+    console.log(computerChoice); //checks logic so far
 
-//Convert player choice to all lowercase
-playerChoice = playerChoice.toLowerCase();
-console.log(playerChoice);
+    //Prompt player to make their choice and store answer
+    playerChoice = prompt("Choose rock, paper, scissors:");
+    // console.log(playerChoice);
 
-//Compare player and computer choices
-console.log(playRound(playerChoice, computerChoice));
+    //Convert player choice to all lowercase
+    playerChoice = playerChoice.toLowerCase();
+    // console.log(playerChoice);
+    console.log(playRound(playerChoice, computerChoice));
+  }
+
+  if (playerScore > computerScore) {
+    console.log(
+      `Player Score: ${playerScore} Computer Score: ${computerScore} You win!`
+    );
+  } else if (playerScore < computerScore) {
+    console.log(
+      `Player Score: ${playerScore} Computer Score: ${computerScore} You lose!`
+    );
+  } else {
+    console.log(
+      `Player Score: ${playerScore} Computer Score: ${computerScore} It's a tie!`
+    );
+  }
+}
+
+// //Get computer choice of rock/paper/scissors
+// computerChoice = getComputerChoice(randomNumberGenerator());
+// console.log(computerChoice); //checks logic so far
+
+// //Prompt player to make their choice and store answer
+// playerChoice = prompt("Choose rock, paper, scissors:");
+// console.log(playerChoice);
+
+// //Convert player choice to all lowercase
+// playerChoice = playerChoice.toLowerCase();
+// console.log(playerChoice);
+
+// //Compare player and computer choices
+// console.log(playRound(playerChoice, computerChoice));
+
+game();
