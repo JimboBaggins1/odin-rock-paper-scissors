@@ -26,3 +26,13 @@ function randomNumberGenerator() {
 computerChoice = getComputerChoice(randomNumberGenerator());
 console.log(computerChoice); //checks logic so far
 
+//Prompt player to make their choice and store answer
+playerChoice = prompt("Choose rock, paper, scissors:");
+console.log(playerChoice);
+
+//Convert player choice to all lowercase
+playerChoice = playerChoice.toLowerCase();
+console.log(playerChoice);
+
+//Compare player and computer choices
+// console.log(playRound(playerChoice, computerChoice));
