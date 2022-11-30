@@ -21,3 +21,8 @@ function getComputerChoice(compChoice) {
 function randomNumberGenerator() {
   return (ranNum = Math.floor(Math.random() * (3 - 1 + 1) + 1));
 }
+
+//Get computer choice of rock/paper/scissors
+computerChoice = getComputerChoice(randomNumberGenerator());
+console.log(computerChoice); //checks logic so far
+
