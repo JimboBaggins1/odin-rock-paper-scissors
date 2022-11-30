@@ -16,3 +16,8 @@ function getComputerChoice(compChoice) {
     return "scissors";
   }
 }
+
+//Function to generate number between 1 and 3 to allow getComputerChoice to choose rock/paper/scissors
+function randomNumberGenerator() {
+  return (ranNum = Math.floor(Math.random() * (3 - 1 + 1) + 1));
+}
