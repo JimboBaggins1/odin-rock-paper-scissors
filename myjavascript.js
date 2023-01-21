@@ -6,6 +6,8 @@ let computerChoice = 0;
 let computerScore = 0;
 let playerScore = 0;
 
+const container = document.querySelector('#container');
+const results = document.createElement('div');
 //Get computer choice
 function getComputerChoice(compChoice) {
   if (compChoice === 1) {
@@ -24,81 +26,46 @@ function randomNumberGenerator() {
 
 //Function to compare computer and player choices
 function playRound(playerChoice, computerChoice) {
-  if (playerChoice === computerChoice) {
-    playerScore = playerScore;
-    computerScore = computerScore;
-    return `It\'s a tie! Time to play again! Player Score: ${playerScore} Computer Score: ${computerScore}`;
-  } else if (playerChoice === "rock" && computerChoice === "scissors") {
-    playerScore++;
-    return `Rock beats scissors - you win! Player Score: ${playerScore} Computer Score: ${computerScore}`;
-  } else if (playerChoice === "rock" && computerChoice === "paper") {
-    computerScore++;
-    return `Paper beats rock - you lose! Player Score: ${playerScore} Computer Score: ${computerScore}`;
-  } else if (playerChoice === "paper" && computerChoice === "rock") {
-    playerScore++;
-    return `Paper beats rock - you win! Player Score: ${playerScore} Computer Score: ${computerScore}`;
-  } else if (playerChoice === "paper" && computerChoice === "scissors") {
-    computerScore++;
-    return `Scissors beat paper - you lose! Player Score: ${playerScore} Computer Score: ${computerScore}`;
-  } else if (playerChoice === "scissors" && computerChoice === "paper") {
-    playerScore++;
-    return `Scissors beat paper - you win! Player Score: ${playerScore} Computer Score: ${computerScore}`;
-  } else if (playerChoice === "scissors" && computerChoice === "rock") {
-    computerScore++;
-    return `Rock beats scissors - you lose! Player Score: ${playerScore} Computer Score: ${computerScore}`;
-  } else {
-    return "Invalid choice - you must choose rock, paper, or scissors";
-  }
+
+if ((playerChoice === 'rock' && computerChoice === 'scissors') || 
+    (playerChoice === 'paper' && computerChoice === 'rock') || 
+    (playerChoice === 'scissors' && computerChoice === 'paper')) {
+      playerScore++;
+      results.textContent = `You win that round! Player Score: ${playerScore} Computer Score: ${computerScore}`;
+      if (playerScore === 5) {
+        results.textContent = `You win! Player Score: ${playerScore} Computer Score: ${computerScore}`;
+        disableButton();
+      }
+    } else if ((playerChoice === 'rock' && computerChoice ==='rock') || 
+                (playerChoice === 'paper' && computerChoice === 'paper') || 
+                (playerChoice === 'scissors' && computerChoice === 'scissors')) {
+                  results.textContent = `It's a draw! Player Score: ${playerScore} Computer Score: ${computerScore}`;
+                } else {
+                  computerScore++;
+                  results.textContent = `Computer wins that round! Player Score: ${playerScore} Computer Score: ${computerScore}`;
+                  if (computerScore === 5) {
+                    results.textContent = `Computer wins! Player Score: ${playerScore} Computer Score: ${computerScore}`;
+                    disableButton();
+                  }
+                }
+  container.appendChild(results);
+  
 }
 
-//Function to loop for five rounds
-function game() {
-  for (let i = 0; i < 5; i++) {
-    console.log(playerScore);
-    console.log(computerScore);
-
-    //Get computer choice of rock/paper/scissors
+const buttons = document.querySelectorAll("button");
+buttons.forEach((button) => {
+  button.addEventListener("click", () => {
+    playerChoice = button.id;
     computerChoice = getComputerChoice(randomNumberGenerator());
-    console.log(computerChoice); //checks logic so far
+    console.log(playerChoice);
+    console.log(computerChoice);
+    playRound(playerChoice, computerChoice);
+  });
+});
 
-    //Prompt player to make their choice and store answer
-    playerChoice = prompt("Choose rock, paper, scissors:");
-    // console.log(playerChoice);
-
-    //Convert player choice to all lowercase
-    playerChoice = playerChoice.toLowerCase();
-    // console.log(playerChoice);
-    console.log(playRound(playerChoice, computerChoice));
-  }
-
-  if (playerScore > computerScore) {
-    console.log(
-      `Player Score: ${playerScore} Computer Score: ${computerScore} You win!`
-    );
-  } else if (playerScore < computerScore) {
-    console.log(
-      `Player Score: ${playerScore} Computer Score: ${computerScore} You lose!`
-    );
-  } else {
-    console.log(
-      `Player Score: ${playerScore} Computer Score: ${computerScore} It's a tie!`
-    );
-  }
+// Once game is complete, player can't click buttons
+function disableButton() {
+  buttons.forEach((button) => {
+    button.disabled = true;
+  })
 }
-
-// //Get computer choice of rock/paper/scissors
-// computerChoice = getComputerChoice(randomNumberGenerator());
-// console.log(computerChoice); //checks logic so far
-
-// //Prompt player to make their choice and store answer
-// playerChoice = prompt("Choose rock, paper, scissors:");
-// console.log(playerChoice);
-
-// //Convert player choice to all lowercase
-// playerChoice = playerChoice.toLowerCase();
-// console.log(playerChoice);
-
-// //Compare player and computer choices
-// console.log(playRound(playerChoice, computerChoice));
-
-game();
